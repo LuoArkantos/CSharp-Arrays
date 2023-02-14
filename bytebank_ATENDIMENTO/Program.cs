@@ -1,4 +1,7 @@
-﻿Console.WriteLine("Boas Vindas ao ByteBank, Atendimento.");
+﻿using bytebank.Modelos.Conta;
+using bytebank_ATENDIMENTO.bytebank.Util;
+
+Console.WriteLine("Boas Vindas ao ByteBank, Atendimento.");
 
 //TestaArrayInt();
 //TestaBuscarPalavra();
@@ -78,10 +81,31 @@ void TestaMediana(Array array)
     Console.WriteLine($"Com base na amostra a mediana = {mediana}");
 }
 
-int[] valores = { 10, 58, 36, 47 };
-for (int i = 0; i < 5; i++)
+int[] valores = { 10, 58, 36, 47, 11 };
+//for (int i = 0; i < valores.Length; i++)
+//{
+//    Console.WriteLine(valores[i]);
+//}
+void TestaArrayDeContasCorrente()
 {
-    Console.WriteLine(valores[i]);
+    ListaDeContasCorrentes listaDeContas = new ListaDeContasCorrentes();
+    listaDeContas.Adicionar(new ContaCorrente(845, "1234-X"));
+    listaDeContas.Adicionar(new ContaCorrente(845, "1232-X"));
+    listaDeContas.Adicionar(new ContaCorrente(845, "1233-X"));
+    listaDeContas.Adicionar(new ContaCorrente(845, "1252-X"));
+    listaDeContas.Adicionar(new ContaCorrente(845, "1277-X"));
+    listaDeContas.Adicionar(new ContaCorrente(845, "1277-X"));
+    listaDeContas.Adicionar(new ContaCorrente(845, "1277-X"));
+
+    var contaDoAndre = new ContaCorrente(292, "1234-B");
+
+    listaDeContas.Adicionar(contaDoAndre);
+    listaDeContas.ExibeLista();
+    Console.WriteLine("===================");
+    listaDeContas.Remover(contaDoAndre);
+    listaDeContas.ExibeLista();
+
+
+
 }
-
-
+TestaArrayDeContasCorrente();
