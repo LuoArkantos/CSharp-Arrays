@@ -47,7 +47,7 @@ namespace bytebank_ATENDIMENTO.bytebank.Util
         {
             int indiceItem = -1; //crio indice negativo para diminuir
 
-            Console.WriteLine($"Removendo Cliente {conta}");
+            Console.WriteLine($"Removendo Cliente de Agencia nº:{conta.Numero_agencia}, Conta nº {conta.Conta}");
 
             for (int i = 0; i < _proximaPosicao; i++)
             {
@@ -74,8 +74,28 @@ namespace bytebank_ATENDIMENTO.bytebank.Util
                 if(_itens[i] != null)
                 {
                     var conta = _itens[i];
-                    Console.WriteLine($"Indice [{i}] = Conta {conta.Conta} - Nº da Agencia = {conta.Numero_agencia} ");
+                    Console.WriteLine($"Indice [{i}] = " +
+                        $"Conta {conta.Conta} - " +
+                        $"Nº da Agencia = {conta.Numero_agencia} ");
                 }
+            }
+        }
+
+        public ContaCorrente RecuperarContaNoIndice(int indice)
+        {
+            if (indice < 0 || indice >= _proximaPosicao)
+            {
+                throw new ArgumentOutOfRangeException(nameof(indice));
+            }
+
+            return _itens[indice];
+        }
+
+        public int Tamanho
+        {
+            get
+            {
+                return _proximaPosicao;
             }
         }
     }

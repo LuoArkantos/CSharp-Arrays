@@ -94,10 +94,8 @@ void TestaArrayDeContasCorrente()
     listaDeContas.Adicionar(new ContaCorrente(845, "1233-X"));
     listaDeContas.Adicionar(new ContaCorrente(845, "1252-X"));
     listaDeContas.Adicionar(new ContaCorrente(845, "1277-X"));
-    listaDeContas.Adicionar(new ContaCorrente(845, "1277-X"));
-    listaDeContas.Adicionar(new ContaCorrente(845, "1277-X"));
 
-    var contaDoAndre = new ContaCorrente(292, "1234-B");
+    ContaCorrente contaDoAndre = new ContaCorrente(292, "1234-B");
 
     listaDeContas.Adicionar(contaDoAndre);
     listaDeContas.ExibeLista();
