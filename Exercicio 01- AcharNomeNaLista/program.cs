@@ -19,7 +19,8 @@ List<string> nomesDosEscolhidos = new List<string>()
 void BuscarNome()
 {
     string nomeBuscado = Console.Readline();
-    string nomeEncontrado = nomeDosEscolhidos.Where("Uxas").ToString;
+    string nomeEncontrado = nomeDosEscolhidos.Where(nomeBuscado).ToString;
+    Console.WriteLine(nomeEncontrado);
     Console.WriteLine();
 
 }
