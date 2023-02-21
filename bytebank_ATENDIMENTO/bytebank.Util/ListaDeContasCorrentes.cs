@@ -81,21 +81,29 @@ namespace bytebank_ATENDIMENTO.bytebank.Util
             }
         }
 
-        public ContaCorrente RecuperarContaNoIndice(int indice)
+        public ContaCorrente RecuperarContaNoIndice(int indice) // Faz o objeto ser indexavel
         {
-            if (indice < 0 || indice >= _proximaPosicao)
+            if (indice < 0 || indice >= _proximaPosicao) //Se o indice for menor q 0 ou maior ou igual a proxima posição
             {
-                throw new ArgumentOutOfRangeException(nameof(indice));
+                throw new ArgumentOutOfRangeException(nameof(indice)); //gera erro de outofrange
             }
 
-            return _itens[indice];
+            return _itens[indice]; //retorna para o obj o indice
         }
 
-        public int Tamanho
+        public int Tamanho //mesma funcao do Length
         {
             get
             {
-                return _proximaPosicao;
+                return _proximaPosicao; //O argumento tamanho retorna a proxima posição do indice
+            }
+        }
+
+        public ContaCorrente this[int indice] //this retorna o conteudo para o OBJ ATUAL
+        {
+            get
+            {
+                return RecuperarContaNoIndice(indice); //O objeto atual vai receber a formula do metodo RecuperarContaNoIndice com o parametro INDICE [i]
             }
         }
     }
