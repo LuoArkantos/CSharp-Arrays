@@ -1,6 +1,8 @@
 ﻿using bytebank.Modelos.Conta;
+using bytebank_ATENDIMENTO.bytebank.Exception;
 using bytebank_ATENDIMENTO.bytebank.Util;
 using System.Collections;
+using static bytebank_ATENDIMENTO.bytebank.Exception.ByteBankException;
 
 Console.WriteLine("Boas Vindas ao ByteBank, Atendimento.");
 
@@ -116,6 +118,25 @@ void TestaArrayDeContasCorrente()
 }
 //TestaArrayDeContasCorrente();
 #endregion
+
+#region Teste lista generica
+//Generica<int> teste1 = new Generica<int>();
+//teste1.MostrarMensagem(11);
+
+//Generica<string> teste2 = new Generica<string>();
+//teste2.MostrarMensagem("ola mundo");
+
+//public class Generica<T>
+//{
+//    public void MostrarMensagem(T t)
+//    {
+//        Console.WriteLine($"Exibindo {t}");
+//    }
+//}
+
+//AtendimentoCliente();
+#endregion
+
 List<ContaCorrente> _listaDeContas = new List<ContaCorrente>() //Esse tipo de array define que tipo de item pode ser definido. Este só aceita itens do tipo ContaCorrente
 {
     new ContaCorrente(122, "021A"){Saldo = 100},  //Contas pre-definidas
@@ -126,40 +147,59 @@ List<ContaCorrente> _listaDeContas = new List<ContaCorrente>() //Esse tipo de ar
 
 void AtendimentoCliente()
 {
-    char opcao = '0';
-    while(opcao != '6')
+    try
     {
-        Console.Clear();
-        Console.WriteLine("===============================");
-        Console.WriteLine("===       Atendimento       ===");
-        Console.WriteLine("===1 - Cadastrar Conta      ===");
-        Console.WriteLine("===2 - Listar Contas        ===");
-        Console.WriteLine("===3 - Remover Conta        ===");
-        Console.WriteLine("===4 - Ordenar Contas       ===");
-        Console.WriteLine("===5 - Pesquisar Conta      ===");
-        Console.WriteLine("===6 - Sair do Sistema      ===");
-        Console.WriteLine("===============================");
-        Console.WriteLine("\n\n");
-        Console.Write("Digite a opção desejada: ");
-        opcao = Console.ReadLine()[0];
+        char opcao = '0';
+        while (opcao != '6')
+        {
+            Console.Clear();
+            Console.WriteLine("===============================");
+            Console.WriteLine("===       Atendimento       ===");
+            Console.WriteLine("===1 - Cadastrar Conta      ===");
+            Console.WriteLine("===2 - Listar Contas        ===");
+            Console.WriteLine("===3 - Remover Conta        ===");
+            Console.WriteLine("===4 - Ordenar Contas       ===");
+            Console.WriteLine("===5 - Pesquisar Conta      ===");
+            Console.WriteLine("===6 - Sair do Sistema      ===");
+            Console.WriteLine("===============================");
+            Console.WriteLine("\n\n");
+            Console.Write("Digite a opção desejada: ");
 
-        switch (opcao){ //Switch = Alterar a var do parametro
-            case '1': //quando digitado 1, executará uma função especifica
-                cadastrarConta();
-                break;
-            case '2': //quando digitado 2, executará uma função especifica
-                listaDeContas();
-                break;
-            case '3': //quando digitado 2, executará uma função especifica
-                excluirConta();
-                break;
-            default:
-                Console.WriteLine("Opção não implementada");
-                break;
-        }
+
+            try
+            {
+                opcao = Console.ReadLine()[0];
+
+            }
+            catch (Exception excecao)
+            {
+
+                throw new BytebankException(excecao.Message);
+            }
+
+            switch (opcao)
+            { //Switch = Alterar a var do parametro
+                case '1': //quando digitado 1, executará uma função especifica
+                    cadastrarConta();
+                    break;
+                case '2': //quando digitado 2, executará uma função especifica
+                    listaDeContas();
+                    break;
+                case '3': //quando digitado 2, executará uma função especifica
+                    excluirConta();
+                    break;
+                default:
+                    Console.WriteLine("Opção não implementada");
+                    break;
+            }
+        } 
     }
-    
-}
+    catch (BytebankException excecao)
+    {
+
+        Console.WriteLine($"{excecao.Message}"); ;
+    }
+ }
 
 void cadastrarConta()
 {
@@ -227,18 +267,4 @@ void listaDeContas()
 
 void excluirConta() { }
 
-//Generica<int> teste1 = new Generica<int>();
-//teste1.MostrarMensagem(11);
-
-//Generica<string> teste2 = new Generica<string>();
-//teste2.MostrarMensagem("ola mundo");
-
-//public class Generica<T>
-//{
-//    public void MostrarMensagem(T t)
-//    {
-//        Console.WriteLine($"Exibindo {t}");
-//    }
-//}
-
-//AtendimentoCliente();
+AtendimentoCliente();
